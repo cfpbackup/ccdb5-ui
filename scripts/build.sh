@@ -8,6 +8,8 @@ pwd
 echo "Running craco build for $NODE_ENV"
 craco build --no-verify
 
+mkdir -p ./dist
+
 # Move CSS assets.
 mv ./build/static/css/main.*.css ./dist/ccdb5.css
 mv ./build/static/css/main.*.css.map ./dist/ccdb5.css.map

@@ -14,7 +14,7 @@
     "url": "https://cfpb.github.io/"
   },
   "files": [
-    "dist/*"
+    "dist"
   ],
   "scripts": {
     "analyze": "craco build; source-map-explorer 'build/static/js/*.js'",
@@ -25,7 +25,8 @@
     "prepare": "husky install",
     "release": "yarn run build && release-it --npm.skipChecks",
     "start": "NODE_ENV=development craco start",
-    "test": "craco test --coverage --watchAll=false"
+    "test": "craco test --coverage --watchAll=false",
+    "prepack": "yarn build"
   },
   "browserslist": [
     ">0.2%",
