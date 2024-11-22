@@ -401,14 +401,6 @@ class TileMap {
     data = processMapData(data, scale);
 
     const options = {
-      accessibility: {
-        description: '',
-        screenReaderSection: {
-          afterChartFormat: '',
-          beforeChartFormat: '',
-        },
-      },
-
       bins,
       chart: {
         styledMode: true,

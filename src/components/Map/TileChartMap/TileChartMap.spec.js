@@ -33,6 +33,9 @@ describe('TileChartMap', () => {
     renderComponent();
     expect(screen.getByTestId('tile-chart-map')).toBeInTheDocument();
     expect(screen.getByTestId('tile-chart-map')).not.toHaveClass('print');
+    expect(
+      screen.getByText('Map of unspecified region with 1 data series.'),
+    ).toBeInTheDocument();
   });
 
   it('renders print mode', () => {
@@ -68,8 +71,8 @@ describe('TileChartMap', () => {
     expect(await screen.findByText('11,397')).toBeInTheDocument();
 
     // need to mouseover to initialize the toggleState handler
-    fireEvent.mouseEnter(screen.getByLabelText('FL, value: 11,397.'));
-    fireEvent.click(screen.getByLabelText('FL, value: 11,397.'));
+    fireEvent.mouseEnter(screen.getByLabelText('1. FL, value: 11,397.'));
+    fireEvent.click(screen.getByLabelText('1. FL, value: 11,397.'));
 
     expect(analyticsSpy).toHaveBeenCalledWith('State Event: add', 'FL');
 
@@ -107,20 +110,20 @@ describe('TileChartMap', () => {
     expect(screen.getByTestId('tile-chart-map')).toBeInTheDocument();
     expect(screen.getByTestId('tile-chart-map')).not.toHaveClass('print');
 
-    await screen.findByLabelText('FL, value: 11,397.');
+    await screen.findByLabelText('1. FL, value: 11,397.');
 
     expect(screen.getByText('Complaints per 1,000')).toBeInTheDocument();
     expect(screen.getByText('FL')).toBeInTheDocument();
     expect(screen.getByText('0.56')).toBeInTheDocument();
 
     // tooltip check
-    fireEvent.mouseEnter(screen.getByLabelText('FL, value: 11,397.'));
+    fireEvent.mouseEnter(screen.getByLabelText('1. FL, value: 11,397.'));
 
     expect(
       screen.getByText('Product with highest complaint volume'),
     ).toBeVisible();
 
-    fireEvent.click(screen.getByLabelText('FL, value: 11,397.'));
+    fireEvent.click(screen.getByLabelText('1. FL, value: 11,397.'));
     expect(analyticsSpy).toHaveBeenCalledWith('State Event: add', 'FL');
     expect(addStateFilterSpy).toHaveBeenCalledWith({
       abbr: 'FL',
@@ -161,8 +164,8 @@ describe('TileChartMap', () => {
     expect(await screen.findByText('11,397')).toBeInTheDocument();
 
     // need to mouseEnter to initialize the toggleState handler!
-    fireEvent.mouseEnter(screen.getByLabelText('FL, value: 11,397.'));
-    fireEvent.click(screen.getByLabelText('FL, value: 11,397.'));
+    fireEvent.mouseEnter(screen.getByLabelText('1. FL, value: 11,397.'));
+    fireEvent.click(screen.getByLabelText('1. FL, value: 11,397.'));
     expect(analyticsSpy).toHaveBeenCalledWith('State Event: remove', 'FL');
     expect(removeStateFilterSpy).toHaveBeenCalledWith({
       abbr: 'FL',
@@ -202,12 +205,16 @@ describe('TileChartMap', () => {
     expect(await screen.findByText('FL')).toBeInTheDocument();
     expect(await screen.findByText('0.56')).toBeInTheDocument();
 
-    expect(screen.getByLabelText('OK, value: 535.')).toHaveClass('deselected');
-    expect(screen.getByLabelText('FL, value: 11,397.')).toHaveClass('selected');
+    expect(screen.getByLabelText('31. OK, value: 535.')).toHaveClass(
+      'deselected',
+    );
+    expect(screen.getByLabelText('1. FL, value: 11,397.')).toHaveClass(
+      'selected',
+    );
 
     // need to mouseEnter to initialize the toggleState handler!
-    fireEvent.mouseEnter(screen.getByLabelText('FL, value: 11,397.'));
-    fireEvent.click(screen.getByLabelText('FL, value: 11,397.'));
+    fireEvent.mouseEnter(screen.getByLabelText('1. FL, value: 11,397.'));
+    fireEvent.click(screen.getByLabelText('1. FL, value: 11,397.'));
 
     expect(analyticsSpy).toHaveBeenCalledWith('State Event: remove', 'FL');
     expect(removeStateFilterSpy).toHaveBeenCalledWith({
