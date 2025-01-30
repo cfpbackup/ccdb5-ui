@@ -20,15 +20,15 @@
     "dist/*"
   ],
   "scripts": {
-    "analyze": "craco build; source-map-explorer '../static/js/*.js'",
     "build": "NODE_ENV=production ./scripts/build.sh",
     "eject": "react-scripts eject",
     "lint": "yarn prettier \"src/**/*.{js,jsx,ts,tsx,json,md}\" --write && yarn eslint ./src --fix && yarn stylelint \"src/**/*.{css,scss}\" --fix && yarn lint:cypress",
     "lint:cypress": "yarn eslint ./cypress --fix",
     "prepare": "husky",
+    "preview": "vite preview",
     "release": "yarn run build && release-it --npm.skipChecks",
-    "start": "NODE_ENV=development craco start",
-    "test": "TZ=UTC craco test --coverage --watchAll=false"
+    "start": "NODE_ENV=development vite",
+    "test": "TZ=UTC jest --coverage --watchAll=false"
   },
   "browserslist": "> 0.2% in @cfpb/browserslist-config stats",
   "devDependencies": {
@@ -91,7 +91,6 @@
     "react-modal": "^3.16.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "^5.0.1",
     "react-test-renderer": "^18.2.0",
     "release-it": "^17.3.0",
     "sass": "^1.83.0",
@@ -147,5 +146,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "proxy": "https://www.consumerfinance.gov",
-  "dependencies": {}
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.11"
+  }
 }
