@@ -12,9 +12,12 @@ export default defineConfig({
         port: 3000, 
     },
     css: {
-        scss: {
-            api: 'modern',
-            //includePaths: ['./node_modules', './src', './']
+        preprocessorOptions: {
+            scss: {
+                api: 'modern',
+                //alias: ['node_modules', 'src'],
+            }
         }
+
     }
 });
